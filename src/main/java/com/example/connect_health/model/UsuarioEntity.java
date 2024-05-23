@@ -34,6 +34,10 @@ public class UsuarioEntity {
 
     }
 
+    public UsuarioEntity() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -58,11 +62,11 @@ public class UsuarioEntity {
         this.planosaude = planosaude;
     }
 
-    public LocalDate getDataNac() {
+    public LocalDate getDataNasc() {
         return datanasc;
     }
 
-    public void setDataNac(LocalDate datanasc) {
+    public void setDataNasc(LocalDate datanasc) {
         this.datanasc = datanasc;
     }
 

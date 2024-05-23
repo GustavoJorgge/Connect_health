@@ -1,3 +1,5 @@
+package com.example.connect_health.infra.security;
+
 import com.example.connect_health.infra.security.CustomUserDetailsService;
 import com.example.connect_health.infra.security.SecurityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +32,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() //permitindo todos a acessar este endpoint
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() //permitindo todos a acessar este endpoint
-                        .anyRequest().authenticated()//bloqueando quem nao esta autenticado
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/cadastrar").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
