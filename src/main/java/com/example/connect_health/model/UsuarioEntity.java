@@ -18,9 +18,14 @@ public class UsuarioEntity {
 
     private String planosaude;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate datanasc;
     private String email;
     private String senha;
+
+    public UsuarioEntity() {
+        // Construtor sem argumentos necessário para o Hibernate
+    }
 
     public UsuarioEntity(String nome, String planosaude, LocalDate datanasc, String email, String senha) {
         this.nome = nome;
