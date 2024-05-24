@@ -4,7 +4,6 @@ import com.example.connect_health.dto.LoginRequestDTO;
 import com.example.connect_health.dto.ResponseDTO;
 import com.example.connect_health.infra.security.TokenService;
 import com.example.connect_health.model.UsuarioEntity;
-import com.example.connect_health.repository.UsuarioRepository;
 import com.example.connect_health.service.UsuarioService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +16,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
-@RequiredArgsConstructor
 public class AuthController {
-    private UsuarioRepository usuarioRepository;
+
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private TokenService tokenService;
      @Autowired
      private UsuarioService usuarioService;
@@ -33,15 +33,10 @@ public class AuthController {
 
     @PostMapping("/cadastrar")
     public ResponseEntity<ResponseDTO> cadastrar(@RequestBody UsuarioEntity dados){
-        Optional<UsuarioEntity> usuarioEntity = this.usuarioRepository.findByEmail(dados.getEmail());
-
+        System.out.println("CHEGOU AQUI");
+        Optional<UsuarioEntity> usuarioEntity = usuarioService.findByEmail(dados.getEmail());
         if(usuarioEntity.isEmpty()){
-            UsuarioEntity newUsuario = new UsuarioEntity();
-            newUsuario.setEmail(dados.getEmail());
-            newUsuario.setNome(dados.getNome());
-            newUsuario.setDataNasc(dados.getDataNasc());
-            newUsuario.setSenha(dados.getSenha());
-            newUsuario.setPlanoSaude(dados.getPlanoSaude());
+            UsuarioEntity newUsuario = new UsuarioEntity(dados.getNome(), dados.getPlanoSaude(), dados.getDataNasc(), dados.getEmail(), dados.getSenha());
             usuarioService.cadastrarUsuario(newUsuario);
 
             String token = this.tokenService.generateToken(newUsuario);
@@ -52,7 +47,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginRequestDTO body){
-        UsuarioEntity usuarioEntity = this.usuarioRepository.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("User Not Found"));
+        UsuarioEntity usuarioEntity = usuarioService.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("User Not Found"));
         if(passwordEncoder.matches(usuarioEntity.getSenha(), body.senha())){
             String token = this.tokenService.generateToken(usuarioEntity);
             return ResponseEntity.ok(new ResponseDTO(token));

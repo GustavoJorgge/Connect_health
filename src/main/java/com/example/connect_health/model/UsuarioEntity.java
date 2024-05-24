@@ -30,14 +30,6 @@ public class UsuarioEntity {
         this.senha = senha;
     }
 
-    public UsuarioEntity(DadosCadastroUsuario dados) {
-
-    }
-
-    public UsuarioEntity() {
-
-    }
-
     public Long getId() {
         return id;
     }
