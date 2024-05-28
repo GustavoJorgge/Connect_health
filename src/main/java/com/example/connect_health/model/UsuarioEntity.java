@@ -16,7 +16,8 @@ public class UsuarioEntity {
     private Long id;
     private String nome;
 
-    private String planosaude;
+    @Column(name="planosaude")
+    private String planoSaude;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate datanasc;
@@ -27,9 +28,9 @@ public class UsuarioEntity {
         // Construtor sem argumentos necessário para o Hibernate
     }
 
-    public UsuarioEntity(String nome, String planosaude, LocalDate datanasc, String email, String senha) {
+    public UsuarioEntity(String nome, String planoSaude, LocalDate datanasc, String email, String senha) {
         this.nome = nome;
-        this.planosaude = planosaude;
+        this.planoSaude = planoSaude;
         this.datanasc = datanasc;
         this.email = email;
         this.senha = senha;
@@ -52,11 +53,11 @@ public class UsuarioEntity {
     }
 
     public String getPlanoSaude() {
-        return planosaude;
+        return planoSaude;
     }
 
     public void setPlanoSaude(String planoSaude) {
-        this.planosaude = planosaude;
+        this.planoSaude = planoSaude;
     }
 
     public LocalDate getDataNasc() {
