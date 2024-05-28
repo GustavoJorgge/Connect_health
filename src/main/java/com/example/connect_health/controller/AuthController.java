@@ -18,8 +18,8 @@ import java.util.Optional;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private PasswordEncoder passwordEncoder;
-
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
     @Autowired
     private TokenService tokenService;
      @Autowired
@@ -48,7 +48,11 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginRequestDTO body){
         UsuarioEntity usuarioEntity = usuarioService.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("User Not Found"));
-        if(passwordEncoder.matches(usuarioEntity.getSenha(), body.senha())){
+        System.out.println(usuarioEntity.getEmail());
+        System.out.println("Senha body:" + body.senha());
+        System.out.println("Senha Usuario:" + usuarioEntity.getSenha());
+
+        if (body.senha().equals(usuarioEntity.getSenha())) {
             String token = this.tokenService.generateToken(usuarioEntity);
             return ResponseEntity.ok(new ResponseDTO(token));
         }
