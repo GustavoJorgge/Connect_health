@@ -5,13 +5,10 @@ import com.example.connect_health.dto.ResponseDTO;
 import com.example.connect_health.infra.security.TokenService;
 import com.example.connect_health.model.UsuarioEntity;
 import com.example.connect_health.service.UsuarioService;
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -54,5 +51,14 @@ public class AuthController {
         }
         return ResponseEntity.badRequest().build();
     }
-    
+
+    @PutMapping("/atualizar/{id}")
+    public UsuarioEntity atualizar(@PathVariable Long id, @RequestBody UsuarioEntity user){
+        return usuarioService.atualizar(id,user);
+    }
+
+    @GetMapping("/buscarUsuarios")
+    public List<UsuarioEntity> obterTodos() {
+        return usuarioService.obterTodos();
+    }
 }
