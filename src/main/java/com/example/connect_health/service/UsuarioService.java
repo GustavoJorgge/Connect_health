@@ -31,6 +31,8 @@ public class UsuarioService {
             existingUser.setNome(usuario.getNome());
             existingUser.setEmail(usuario.getEmail());
             existingUser.setPlanoSaude(usuario.getPlanoSaude());
+            existingUser.setComorbidade(usuario.getComorbidade());
+            existingUser.setTipoSanguineo(usuario.getTipoSanguineo());
             return usuarioRepository.save(existingUser);
         }else{
             return null;

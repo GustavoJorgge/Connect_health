@@ -2,12 +2,15 @@ package com.example.connect_health.controller;
 
 import com.example.connect_health.dto.LoginRequestDTO;
 import com.example.connect_health.dto.ResponseDTO;
+import com.example.connect_health.enums.Comorbidade;
 import com.example.connect_health.infra.security.TokenService;
 import com.example.connect_health.model.UsuarioEntity;
 import com.example.connect_health.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,27 +18,19 @@ import java.util.Optional;
 @RequestMapping("/auth")
 public class AuthController {
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
     @Autowired
     private TokenService tokenService;
-     @Autowired
-     private UsuarioService usuarioService;
-
-//    @PostMapping("/cadastrar")
-//    @Transactional
-//    public UsuarioEntity cadastrar(@RequestBody UsuarioEntity dados){
-//        return usuarioService.cadastrarUsuario(dados);
-//    }
+    @Autowired
+    private UsuarioService usuarioService;
 
     @PostMapping("/cadastrar")
     public ResponseEntity<ResponseDTO> cadastrar(@RequestBody UsuarioEntity dados){
-        System.out.println("CHEGOU AQUI");
+        //verificando se o e-mail ja é cadastrado
         Optional<UsuarioEntity> usuarioEntity = usuarioService.findByEmail(dados.getEmail());
         if(usuarioEntity.isEmpty()){
-            UsuarioEntity newUsuario = new UsuarioEntity(dados.getNome(), dados.getPlanoSaude(), dados.getDataNasc(), dados.getEmail(), dados.getSenha());
+            //Objeto de usuario com os dados obtidos no json
+            UsuarioEntity newUsuario = new UsuarioEntity(dados.getNome(), dados.getPlanoSaude(), dados.getDataNasc(), dados.getEmail(), dados.getSenha(), dados.getTipoSanguineo(), dados.getComorbidade(), dados.getSexo());
             usuarioService.cadastrarUsuario(newUsuario);
-
             String token = this.tokenService.generateToken(newUsuario);
             return ResponseEntity.ok(new ResponseDTO(token));
         }
