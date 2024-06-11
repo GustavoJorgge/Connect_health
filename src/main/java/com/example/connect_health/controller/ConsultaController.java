@@ -1,6 +1,7 @@
 package com.example.connect_health.controller;
 
 import com.example.connect_health.model.ConsultaEntity;
+import com.example.connect_health.model.ExameEntity;
 import com.example.connect_health.service.ConsultaService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,10 @@ public class ConsultaController {
     @Transactional
     public String removeConsulta(@PathVariable Long id){
         return consultaService.removeConsulta(id);
+    }
+
+    @PutMapping("/atualizar/{id}")
+    public ConsultaEntity atualizar(@PathVariable long id, @RequestBody ConsultaEntity consulta){
+        return consultaService.atualizar(id, consulta);
     }
 }

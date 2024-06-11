@@ -44,19 +44,4 @@ public class ExameService {
         }
 
     }
-
-//    public UsuarioEntity atualizar(Long id, UsuarioEntity usuario) {
-//        UsuarioEntity existingUser = usuarioRepository.findById(usuario.getId()).orElse(null);
-//
-//        if(existingUser != null){
-//            existingUser.setNome(usuario.getNome());
-//            existingUser.setEmail(usuario.getEmail());
-//            existingUser.setPlanoSaude(usuario.getPlanoSaude());
-//            existingUser.setComorbidade(usuario.getComorbidade());
-//            existingUser.setTipoSanguineo(usuario.getTipoSanguineo());
-//            return usuarioRepository.save(existingUser);
-//        }else{
-//            return null;
-//        }
-//    }
 }
