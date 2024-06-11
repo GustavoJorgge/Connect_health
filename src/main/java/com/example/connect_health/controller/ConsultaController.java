@@ -38,4 +38,9 @@ public class ConsultaController {
     public ConsultaEntity atualizar(@PathVariable long id, @RequestBody ConsultaEntity consulta){
         return consultaService.atualizar(id, consulta);
     }
+
+    @GetMapping("/buscaPorData")
+    public List<ConsultaEntity> buscaPorData(){
+        return consultaService.buscaPorData();
+    }
 }

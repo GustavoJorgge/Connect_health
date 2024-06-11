@@ -44,7 +44,10 @@ public class ConsultaService {
         }else{
             return null;
         }
+    }
 
+    public List<ConsultaEntity> buscaPorData(){
+        return consultaRepository.findAllByOrderByDataAsc();
     }
 
 }
