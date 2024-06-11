@@ -19,6 +19,9 @@ public class ConsultaEntity {
     private String recorrencia;
     private String arquivo;
 
+    public ConsultaEntity() {
+    }
+
     public ConsultaEntity(Long id_usuario, String tipo_consulta, String especialidade, String nome_medico, String crm, Date data, String recorrencia, String arquivo) {
         this.id_usuario = id_usuario;
         this.tipo_consulta = tipo_consulta;
