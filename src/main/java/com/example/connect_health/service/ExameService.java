@@ -16,4 +16,8 @@ public class ExameService {
     public List<ExameEntity> obterTodos(){
         return exameRepository.findAll();
     }
+
+    public ExameEntity armazenaExame(ExameEntity dados){
+        return exameRepository.save(dados);
+    }
 }

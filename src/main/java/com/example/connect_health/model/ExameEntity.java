@@ -12,6 +12,8 @@ public class ExameEntity {
     private long id;
 
     private long id_usuario;
+
+    @Column(name = "tipo_exame")
     private String tipo_exame;
     private String nome_exame;
     private Date data;
@@ -21,11 +23,9 @@ public class ExameEntity {
     private String nome_medico;
     private String crm;
 
-    // Default constructor for JPA
     public ExameEntity() {
     }
 
-    // Constructor with parameters
     public ExameEntity(long id_usuario, String tipo_exame, String nome_exame, Date data, String recorr, String recorrencia, String arquivo, String nome_medico, String crm) {
         this.id_usuario = id_usuario;
         this.tipo_exame = tipo_exame;
@@ -38,7 +38,6 @@ public class ExameEntity {
         this.crm = crm;
     }
 
-    // Getters and Setters
     public long getId() {
         return id;
     }
