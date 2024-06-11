@@ -31,4 +31,9 @@ public class ExameController {
     public String removeExame (@PathVariable long id){
         return exameService.removeExame(id);
     }
+
+    @PutMapping("/atualizar/{id}")
+    public ExameEntity atualizar(@PathVariable long id, @RequestBody ExameEntity exame){
+        return exameService.atualizar(id, exame);
+    }
 }
