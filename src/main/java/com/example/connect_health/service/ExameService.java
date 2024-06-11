@@ -20,4 +20,9 @@ public class ExameService {
     public ExameEntity armazenaExame(ExameEntity dados){
         return exameRepository.save(dados);
     }
+
+    public String removeExame(long id){
+        exameRepository.deleteById(id);
+        return "Exame removido com sucesso!";
+    }
 }
