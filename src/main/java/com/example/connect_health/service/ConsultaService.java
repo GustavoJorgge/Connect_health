@@ -21,4 +21,10 @@ public class ConsultaService {
     public ConsultaEntity armazenaConsulta(ConsultaEntity dados){
         return consultaRepository.save(dados);
     }
+
+    public String removeConsulta(Long id){
+        consultaRepository.deleteById(id);
+        return "Consulta deletada com sucesso!";
+    }
+
 }
