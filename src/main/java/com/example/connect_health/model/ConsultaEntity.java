@@ -16,19 +16,22 @@ public class ConsultaEntity {
     private String nome_medico;
     private String crm;
     private Date data;
+
+    private String recorr;
     private String recorrencia;
     private String arquivo;
 
     public ConsultaEntity() {
     }
 
-    public ConsultaEntity(Long id_usuario, String tipo_consulta, String especialidade, String nome_medico, String crm, Date data, String recorrencia, String arquivo) {
+    public ConsultaEntity(Long id_usuario, String tipo_consulta, String especialidade, String nome_medico, String crm, Date data, String recorr, String recorrencia, String arquivo) {
         this.id_usuario = id_usuario;
         this.tipo_consulta = tipo_consulta;
         this.especialidade = especialidade;
         this.nome_medico = nome_medico;
         this.crm = crm;
         this.data = data;
+        this.recorr = recorr;
         this.recorrencia = recorrencia;
         this.arquivo = arquivo;
     }
@@ -87,6 +90,14 @@ public class ConsultaEntity {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public String getRecorr() {
+        return recorr;
+    }
+
+    public void setRecorr(String recorr) {
+        this.recorr = recorr;
     }
 
     public String getRecorrencia() {
