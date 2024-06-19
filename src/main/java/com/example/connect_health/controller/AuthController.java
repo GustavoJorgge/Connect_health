@@ -29,7 +29,7 @@ public class AuthController {
         Optional<UsuarioEntity> usuarioEntity = usuarioService.findByEmail(dados.getEmail());
         if(usuarioEntity.isEmpty()){
             //Objeto de usuario com os dados obtidos no json
-            UsuarioEntity newUsuario = new UsuarioEntity(dados.getNome(), dados.getPlanoSaude(), dados.getDataNasc(), dados.getEmail(), dados.getSenha(), dados.getTipoSanguineo(), dados.getComorbidade(), dados.getSexo());
+            UsuarioEntity newUsuario = new UsuarioEntity(dados.getNome(), dados.getPlanoSaude(), dados.getDataNasc(), dados.getEmail(), dados.getSenha(), dados.getTipoSanguineo(), dados.getSexo());
             usuarioService.cadastrarUsuario(newUsuario);
             String token = this.tokenService.generateToken(newUsuario);
             return ResponseEntity.ok(new ResponseDTO(token));

@@ -32,7 +32,6 @@ public class UsuarioEntity {
     private TipoSanguineo tipoSanguineo;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Comorbidade comorbidades;
 
     private String sexo;
@@ -42,14 +41,13 @@ public class UsuarioEntity {
     }
 
 
-    public UsuarioEntity(String nome, String planoSaude, LocalDate datanasc, String email, String senha, TipoSanguineo tipoSanguineo, Comorbidade comorbidades, String sexo) {
+    public UsuarioEntity(String nome, String planoSaude, LocalDate datanasc, String email, String senha, TipoSanguineo tipoSanguineo, String sexo) {
         this.nome = nome;
         this.planoSaude = planoSaude;
         this.datanasc = datanasc;
         this.email = email;
         this.senha = senha;
         this.tipoSanguineo = tipoSanguineo;
-        this.comorbidades = comorbidades;
         this.sexo = sexo;
     }
 
